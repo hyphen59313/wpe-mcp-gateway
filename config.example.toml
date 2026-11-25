@@ -1,0 +1,45 @@
+# wpe-mcp-gateway 配置示例
+# 放到项目根目录（config.toml）或 %LOCALAPPDATA%\wpe-mcp\config.toml
+
+[upstream]
+# WPE 启动后会把连接器同步到这个固定路径，升级 WPE 也不用改这里
+command = ["C:\\WPE64DB\\McpServer\\WPEMcpServer.exe"]
+# 上游是 GUI 程序附带的连接器，通常不需要工作目录
+# cwd = "C:\\WPE64DB\\McpServer"
+startup_timeout_sec = 20
+call_timeout_sec = 30
+
+[policy]
+# 确认令牌有效期（秒）：第一次调用拿到的令牌超过这个时间就失效
+confirm_ttl_sec = 180
+# 每分钟允许的变更类调用次数（发包/改滤镜/注入都算）
+mutations_per_minute = 20
+# 发包的最小间隔与单次最大循环次数，防止 AI 把目标服务器刷爆
+min_send_interval_ms = 50
+max_send_times = 100
+# 审计日志路径，留空 = %LOCALAPPDATA%\wpe-mcp\audit.jsonl
+# audit_log = "D:\\wpe-audit\\audit.jsonl"
+# 明确跳过二次确认的工具（风险自负，建议留空）
+auto_confirm_tools = []
+
+[http]
+# 只在需要给「不支持本地 stdio」的客户端用时开启
+host = "127.0.0.1"
+port = 7801
+# 令牌：优先用环境变量 WPE_MCP_TOKEN，也可以直接写在这里
+# token = "换成你自己的随机串"
+
+[pins]
+# 上游工具名和你预期的不一致时，在这里釘死映射。
+# 先用 wpe_tools 看清单，再把名字抄过来，例如：
+# packets_list = "wpe_get_packet_list"
+# packet_send = "wpe_send_packet"
+# filters = "wpe_get_filter_list"
+# filter_write = "wpe_filter_add"
+# filter_delete = "wpe_filter_delete"
+# logs = "wpe_get_system_log"
+# processes = "wpe_get_process_list"
+# inject = "wpe_inject_process"
+# sender_control = "wpe_sender_start"
+# robot_control = "wpe_robot_start"
+# proxy = "wpe_proxy_start"

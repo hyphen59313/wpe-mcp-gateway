@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "wpe": {
+      "type": "stdio",
+      "command": "C:\\path\\to\\wpe-mcp-gateway\\wpe-mcp.cmd",
+      "args": []
+    }
+  }
+}

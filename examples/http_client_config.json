@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "wpe": {
+      "type": "http",
+      "url": "http://127.0.0.1:7801/mcp",
+      "headers": {
+        "Authorization": "Bearer 换成你自己的随机串"
+      }
+    }
+  }
+}
