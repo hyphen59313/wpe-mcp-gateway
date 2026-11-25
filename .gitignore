@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+config.toml
+audit*.jsonl
+*.log
+tmp_debug.py
+.pytest_cache/
+.vscode/
+.idea/
